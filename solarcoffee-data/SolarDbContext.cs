@@ -12,11 +12,11 @@ public class SolarDbContext : IdentityDbContext
     {
     }
     
-    private DbSet<Customer> Customers { get; set; }
-    private DbSet<CustomerAddress> CustomerAddresses { get; set; }
-    private DbSet<Product> Products { get; set; }
-    private DbSet<ProductInventory> ProductInventories { get; set; }
-    private DbSet<ProductInventorySnapshot> ProductInventorySnapShot { get; set; }
-    private DbSet<SalesOrder> SalesOrder { get; set; }
-    private DbSet<SalesOrderItem> SalesOrderItems { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<CustomerAddress> CustomerAddresses { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ProductInventory> ProductInventories { get; set; }
+    public DbSet<ProductInventorySnapshot> ProductInventorySnapShot { get; set; }
+    public DbSet<SalesOrder> SalesOrder { get; set; }
+    public DbSet<SalesOrderItem> SalesOrderItems { get; set; }
 }
