@@ -32,16 +32,20 @@ builder.Services.AddApiVersioning(options =>
 {
     options.AssumeDefaultVersionWhenUnspecified = true;
     options.DefaultApiVersion = new ApiVersion(1, 0);
-}); 
+});
 
+builder.Services.AddSwaggerGen(options => options.OperationFilter<SwaggerDefaultValues>());
+builder.Services.AddVersionedApiExplorer();
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
 builder.Services.AddTransient<IProductService, ProductService>();
 
+
     var app = builder.Build();
+    var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    var provider = app.Services.GetService<IApiVersionDescriptionProvider>();
     app.UseSwagger();
     app.UseSwaggerUI(
         options =>

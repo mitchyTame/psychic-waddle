@@ -19,7 +19,8 @@ public class ProductService : IProductService
     /// <returns>List of type Data.Models.Product</returns>
     public List<solarcoffee_data.Models.Product> GetAllProducts()
     {
-        return _db.Products.ToList();
+        var products = _db.Products.ToList();
+        return products;
     }
 
     /// <summary>

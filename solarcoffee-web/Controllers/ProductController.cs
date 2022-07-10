@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using solarcoffee_data.Models;
 using solarcoffee_services;
 using solarcoffee_services.Product;
+using solarcoffee_web.Serialization;
 
 namespace solarcoffee_web.Controllers;
 
@@ -15,14 +16,16 @@ public class ProductController : ControllerBase
     public ProductController(ILogger<ProductController> logger, IProductService productService)
     {
         _logger = logger;
+        _productService = productService;
     }
 
     [HttpGet("/api/product")]
     public ActionResult GetProduct()
     {
         _logger.LogInformation("Retrieving all products");
-       var products =  _productService.GetAllProducts();
-        return Ok(products);
+        var products =  _productService.GetAllProducts();
+        var productViewModel = products.Select(ProductMapper.Serialize_ProductModel);
+        return Ok(productViewModel);
     }
 
 }
