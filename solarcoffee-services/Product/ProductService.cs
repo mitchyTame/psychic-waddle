@@ -63,14 +63,14 @@ public class ProductService : IProductService
                 isSuccess = true
             };
         }
-        catch (DbException error)
+        catch (DbException e)
         {
 
             return new ServiceResponse<solarcoffee_data.Models.Product>
             {
                 Data = product,
                 Time = DateTime.UtcNow,
-                Message = "An error occurred with saving this product",
+                Message = e.StackTrace ?? "An error occurred with saving this product",
                 isSuccess = false
             };
         }
